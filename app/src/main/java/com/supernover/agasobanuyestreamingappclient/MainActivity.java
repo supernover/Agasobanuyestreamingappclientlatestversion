@@ -3,14 +3,19 @@ package com.supernover.agasobanuyestreamingappclient;
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -128,16 +133,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         appOpenAdManager = ((MyApplication) getApplication()).getAppOpenAdManager();
+
+        forceUpdate();
         this.imageUpdate = (ImageView) findViewById( R.id.image_update);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setTitle("Agasobanuye");
-        this.imageUpdate.setOnClickListener(new View.OnClickListener() {
-            /* class com.birjulabsinc.birjutv.MainActivity.AnonymousClass1 */
 
-            public void onClick(View v) {
-                MainActivity.this.appUpdate();
-            }
-        });
+
         MobileAds.initialize(this);
         loadAds();
         FirebaseApp.initializeApp(this);
@@ -165,82 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
     /* access modifiers changed from: private */
     /* access modifiers changed from: public */
-    private void appUpdate() {
-        final Context context = getApplicationContext();
-        String myVersionName = "";
-        try {
-            myVersionName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        String finalMyVersionName = myVersionName;
-        FirebaseDatabase.getInstance().getReference().child("Update").child("version").addValueEventListener( new ValueEventListener() {
-            /* class com.birjulabsinc.birjutv.MainActivity.AnonymousClass2 */
 
-            @Override // com.google.firebase.database.ValueEventListener
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (finalMyVersionName.equals((String) dataSnapshot.getValue(String.class))) {
-                    Toast.makeText(context, "Already Updated", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                MainActivity.this.downloadApk();
-                Toast.makeText(context, "Download starts", Toast.LENGTH_SHORT).show();
-            }
 
-            @Override // com.google.firebase.database.ValueEventListener
-            public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(context, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    /* access modifiers changed from: private */
-    /* access modifiers changed from: public */
-    private void downloadApk() {
-        if (Build.VERSION.SDK_INT < 23) {
-            startDownloading();
-        } else if (checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 100);
-        } else {
-            startDownloading();
-        }
-    }
-
-    private void startDownloading() {
-        FirebaseDatabase.getInstance().getReference().child("Update").child("apk").addValueEventListener(new ValueEventListener() {
-            /* class com.birjulabsinc.birjutv.MainActivity.AnonymousClass3 */
-            static final /* synthetic */ boolean $assertionsDisabled = false;
-
-            @SuppressLint("WrongConstant")
-            @Override // com.google.firebase.database.ValueEventListener
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                DownloadManager.Request request = new DownloadManager.Request(Uri.parse((String) dataSnapshot.getValue(String.class)));
-                request.setAllowedNetworkTypes(3);
-                request.setTitle("Birju TV.apk");
-                request.setDescription("Downloading file.....");
-                request.allowScanningByMediaScanner();
-                request.setNotificationVisibility(1);
-                request.setDestinationInExternalPublicDir("/IT Guru", "Birju TV.apk");
-                ((DownloadManager) MainActivity.this.getSystemService("download")).enqueue(request);
-            }
-
-            @Override // com.google.firebase.database.ValueEventListener
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-    }
-
-    @Override // androidx.core.app.ActivityCompat.OnRequestPermissionsResultCallback, androidx.fragment.app.FragmentActivity
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (requestCode == 100) {
-            if (grantResults[0] == 0) {
-                startDownloading();
-                Toast.makeText(this, "Permission granrted", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            Toast.makeText(this, "Permission not granrted", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     private void loadFeatureFirebase() {
         DatabaseReference RvRef = this.database.getReference("featured");
@@ -327,6 +255,80 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.finish();
             }
         });
+    }
+    public void forceUpdate()
+    {
+        PackageManager packageManager = this.getPackageManager();
+        PackageInfo packageInfo = null;
+        try {
+            packageInfo =  packageManager.getPackageInfo(getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String currentVersion = packageInfo.versionName;
+        new ForceUpdateAsync(currentVersion,MainActivity.this).execute();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.dashboard_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+
+            case R.id.Rate:
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getString(R.string.packegname)));
+                startActivity(intent);
+
+                break;
+            default:
+                //  break;
+
+            case R.id.sharemenu:
+
+
+                FirebaseDatabase.getInstance().getReference().child("ver").child("updatelink").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String url = dataSnapshot.getValue().toString();
+
+                        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+
+
+                        sharingIntent.setType("text/plain");
+                        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "*Please Download  Agasobanuye App here! and watch movies for free!  *\n\n------------------------------\n\n*Download Now* - \n\n" + url);
+                        //sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject");
+                        sharingIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                        //startActivity(Intent.createChooser(sharingIntent, "Share using"));
+
+                        PackageManager packageManager = getPackageManager();
+                        if (sharingIntent.resolveActivity(packageManager) != null) {
+                            startActivity(sharingIntent);
+                            // Broadcast the Intent.
+                            startActivity(Intent.createChooser(sharingIntent, "Share to"));
+                        }
+
+
+
+                    }
+
+                    @Override public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+                break;
+
+
+        }
+
+
+        return true;
     }
 
 

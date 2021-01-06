@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Agasobanuyestreamingappclient</string>
+    <string name="app_name">Agasobanuye</string>
     <string name="episodes">Episodes</string>
     <string name="todo">TODO</string>
     <string name="title">title</string>
@@ -12,5 +12,6 @@
     <string name="admob_banner_ad_unit_id">ca-app-pub-3063877521249388/6106237643</string>
     <string name="featured_web_series">Featured</string>
     <string name="web_series">Web series</string>
+    <string name="packegname">com.supernover.agasobanuyestreamingappclient</string>
 
 </resources>
