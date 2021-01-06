@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:orientation="vertical" android:background="@color/colorPrimaryDark" android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:ads="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:background="@android:color/transparent"
@@ -20,6 +27,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:sliderIndicatorSelectedColor="#f1b814"
                 app:sliderIndicatorUnselectedColor="#ffffff"/>
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adViewMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                app:adSize="BANNER"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/slider_pager"
+                ads:adUnitId="@string/admob_banner_ad_unit_id"/>
             <TextView
                 android:textSize="16sp"
                 android:textColor="@android:color/white"
@@ -28,11 +47,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:layout_marginTop="32dp"
-                android:text="Featured web series "
+                android:text="@string/featured_web_series"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/slider_pager"/>
+                app:layout_constraintTop_toBottomOf="@+id/adViewMessage"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_featured_movies"
                 android:layout_width="0dp"
@@ -51,11 +70,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:text="Web series"
+                android:text="@string/web_series"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_featured_movies"/>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_originals"
                 android:layout_width="0dp"
@@ -67,6 +87,9 @@
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView1"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </ScrollView>
+
 </LinearLayout>

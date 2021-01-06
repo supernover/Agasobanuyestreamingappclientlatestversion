@@ -33,7 +33,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9139073536666157~9613785191" />
+            android:value="ca-app-pub-3063877521249388~8852848151" />
 
         <activity
             android:name=".videoplayersingle.SingleExoPlayerActivity"

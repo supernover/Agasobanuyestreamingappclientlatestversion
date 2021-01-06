@@ -5,9 +5,12 @@
     <string name="title">title</string>
     <string name="desc">desc</string>
     <string name="cast">Cast</string>
-    <string name="interstitialAd_id">3546789089765435</string>
+    <string name="interstitialAd_id">ca-app-pub-3063877521249388/8325206875</string>
     <string name="initial">0</string>
     <string name="slider_title">slider title</string>
     <string name="trailer_movie">Fcast</string>
+    <string name="admob_banner_ad_unit_id">ca-app-pub-3063877521249388/6106237643</string>
+    <string name="featured_web_series">Featured</string>
+    <string name="web_series">Web series</string>
 
 </resources>

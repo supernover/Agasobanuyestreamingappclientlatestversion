@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
     android:layout_width="match_parent"
@@ -24,8 +25,32 @@
             <ImageView android:id="@+id/f_thumb" android:layout_width="125dp" android:layout_height="175dp" android:scaleType="centerCrop" android:layout_marginStart="16dp" android:transitionName="imageMain" app:layout_constraintBottom_toBottomOf="@+id/f_cover" app:layout_constraintStart_toStartOf="@+id/f_cover" app:layout_constraintTop_toBottomOf="@+id/f_cover" app:srcCompat="@drawable/logo_ic"
                 android:layout_marginLeft="16dp" />
             <TextView android:textSize="24sp" android:textColor="@android:color/white" android:id="@+id/f_title" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/title" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0" app:layout_constraintStart_toEndOf="@+id/f_thumb" app:layout_constraintTop_toBottomOf="@+id/f_cover"/>
-            <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_view_parts" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:layout_marginStart="16dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView2"/>
-            <TextView android:textSize="16sp" android:textColor="@color/colorHoloLightBlue" android:id="@+id/f_desc" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="@string/desc" android:lineSpacingExtra="8dp" android:layout_marginStart="16dp" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/recycler_view_parts"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_parts"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@color/colorHoloLightBlue"
+                android:id="@+id/f_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/desc"
+                android:lineSpacingExtra="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_view_parts"/>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floatingActionButton"
                 android:clickable="true"
@@ -39,7 +64,19 @@
                 android:focusable="true" />
             <TextView android:textSize="24sp" android:textColor="@android:color/white" android:id="@+id/f_cast" android:background="@color/colorPrimaryDark" android:padding="8dp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/cast" android:paddingStart="16sp" android:paddingEnd="16sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/f_desc"/>
             <androidx.recyclerview.widget.RecyclerView android:id="@+id/recycler_view" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="16dp" android:layout_marginStart="8dp" android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/f_cast"/>
-            <TextView android:textSize="24sp" android:textColor="@android:color/white" android:id="@+id/textView2" android:background="@color/colorPrimaryDark" android:padding="8dp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/episodes" android:paddingStart="16sp" android:paddingEnd="16sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/f_thumb"/>
+            <TextView android:textSize="24sp" android:textColor="@android:color/white" android:id="@+id/textView2" android:background="@color/colorPrimaryDark" android:padding="8dp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="@string/episodes" android:paddingStart="16sp" android:paddingEnd="16sp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/adViewMessage"/>
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adViewMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                app:adSize="BANNER"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/f_thumb"
+                ads:adUnitId="@string/admob_banner_ad_unit_id"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>
