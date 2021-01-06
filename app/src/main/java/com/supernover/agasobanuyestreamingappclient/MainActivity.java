@@ -87,11 +87,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         adViewMessage = findViewById(R.id.adViewMessage);
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                //.addTestDevice("2B8A66841577BC8BDE80A595867FC2A4") // Enter your test device id here from Logcat
-                .build();
-        adViewMessage.loadAd(adRequest);
+
+
+        adViewMessage = (AdView)findViewById(R.id.adViewMessage);
+        AdRequest request = new AdRequest.Builder().build();
+        adViewMessage.loadAd(request);
         adViewMessage.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
