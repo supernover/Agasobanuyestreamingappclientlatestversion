@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/sharemenu" android:title="help us by sharing this App " />
+    <item  android:id="@+id/Rate"
+        android:title="Give us feedback and 5 Stars!"
+        app:showAsAction="withText"/>
+
+
+
+</menu>
