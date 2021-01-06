@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:orientation="vertical" android:background="@color/colorPrimaryDark" android:layout_width="match_parent" android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:backgroundTint="@android:color/transparent"
+        app:titleTextColor="@android:color/white">
+        <ImageView android:layout_gravity="end" android:id="@+id/image_update" android:layout_width="35dp" android:layout_height="35dp" android:layout_margin="10dp" android:src="@drawable/ic_update_white_24dp"/>
+    </androidx.appcompat.widget.Toolbar>
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+        <androidx.constraintlayout.widget.ConstraintLayout android:background="@color/colorPrimaryDark" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/slider_pager"
+                android:layout_width="0dp"
+                android:layout_height="255dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:sliderIndicatorSelectedColor="#f1b814"
+                app:sliderIndicatorUnselectedColor="#ffffff"/>
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Featured web series "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/slider_pager"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_featured_movies"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"/>
+            <TextView
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Web series"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_featured_movies"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_originals"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView1"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

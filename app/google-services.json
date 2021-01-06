@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "787020677255",
+    "firebase_url": "https://agasobanuye-tv-default-rtdb.firebaseio.com",
+    "project_id": "agasobanuye-tv",
+    "storage_bucket": "agasobanuye-tv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787020677255:android:5035bd6aa18a88515ef822",
+        "android_client_info": {
+          "package_name": "com.supernover.agasobanuyestreamingappclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "787020677255-9nbf121m5ibe3bgjt2u9e01sb5obqk8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKHvON8zc45M81mqnBwMHFfh1QqBPmQ8Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "787020677255-9nbf121m5ibe3bgjt2u9e01sb5obqk8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

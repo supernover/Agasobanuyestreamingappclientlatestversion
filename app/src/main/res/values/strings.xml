@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Agasobanuyestreamingappclient</string>
+    <string name="episodes">Episodes</string>
+    <string name="todo">TODO</string>
+    <string name="title">title</string>
+    <string name="desc">desc</string>
+    <string name="cast">Cast</string>
+    <string name="interstitialAd_id">3546789089765435</string>
+    <string name="initial">0</string>
+    <string name="slider_title">slider title</string>
+    <string name="trailer_movie">Fcast</string>
+
+</resources>
