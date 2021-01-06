@@ -55,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recycler_originals;
     private List<SliderModel> slideList;
 
+    private AppOpenAdManager appOpenAdManager;
+
+    private int numActivityRestarted = 0;
+
     public MainActivity() {
         FirebaseDatabase instance = FirebaseDatabase.getInstance();
         this.database = instance;
@@ -66,9 +70,11 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        appOpenAdManager = ((MyApplication) getApplication()).getAppOpenAdManager();
         this.imageUpdate = (ImageView) findViewById( R.id.image_update);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        getSupportActionBar().setTitle("Birju TV");
+        getSupportActionBar().setTitle("Agasobanuye");
         this.imageUpdate.setOnClickListener(new View.OnClickListener() {
             /* class com.birjulabsinc.birjutv.MainActivity.AnonymousClass1 */
 
@@ -265,5 +271,21 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this.finish();
             }
         });
+    }
+
+
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        numActivityRestarted++;
+
+        if (canShowAppOpenAd()) {
+            appOpenAdManager.showAdIfAvailable();
+        }
+    }
+
+    private boolean canShowAppOpenAd() {
+        return numActivityRestarted % 3 == 0;
     }
 }
