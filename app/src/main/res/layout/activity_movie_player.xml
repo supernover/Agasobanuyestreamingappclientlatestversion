@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt" android:background="@color/player_bg" android:layout_width="match_parent" android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:background="@color/player_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/exo_player_view"
         android:background="@color/player_bg"
@@ -11,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:show_buffering="when_playing"
         app:shutter_background_color="@color/player_bg">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarMovie"
             android:background="@android:color/transparent"
